@@ -577,7 +577,6 @@ public class QueryPlan {
         QueryOperator minOp = new SequentialScanOperator(this.transaction, table);
 
         // TODO(proj3_part2): implement
-        QueryOperator minOp = new SequentialScanOperator(this.transaction, table);
         int minCost = minOp.estimateIOCost();
         int minIndex = -1; 
 
@@ -663,6 +662,7 @@ public class QueryPlan {
         //      fetched an operator for from pass1Map) and the previously joined
         //      tables. Then, update the result map if needed.
         for (Set<String> joined : prevMap.keySet()) {
+            QueryOperator prevOp = prevMap.get(joined);
 
             for (JoinPredicate pred : this.joinPredicates) {
                 String newTable;
